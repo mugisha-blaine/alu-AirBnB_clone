@@ -33,6 +33,8 @@ class BaseModel:
     def save(self):
         """save definition"""
         self.updated_at = datetime.now()
+        models.storage.new(self)
+        models.storage.save()
 
     def to_dict(self):
         new_dict = self.__dict__.copy()
