@@ -1,0 +1,52 @@
+#!/usr/bin/python3
+""" Class FileStorage """
+from json import dump, load, dumps
+from os.path import exists
+from models import base_model
+
+BaseModel = base_model.BaseModel
+name_class = ["BaseModel"]
+
+
+class FileStorage:
+
+    __file_path = "file.json"
+    __objects = {}
+
+    def all(self):
+        """returns dectionary
+        """
+        return FileStorage.__objects
+
+    def new(self, obj):
+        """ sets  the obj with key in __objects
+        """
+        class_name = obj.__class__.__name__
+        id = obj.id
+        class_id = class_name + "." + id
+        FileStorage.__objects[class_id] = obj
+
+    def save(self):
+        """ file storage
+        """
+        dict_to_json = {}
+        for key, value in FileStorage.__objects.items():
+            dict_to_json[key] = value.to_dict()
+        with open(FileStorage.__file_path, "w", encoding='utf-8') as fil:
+            dump(dict_to_json, fil)
+
+    def reload(self):
+        """ if (__file_path) exists deserializes JSON file to __objects
+            elif , do nothing. If the file not exist,
+        """
+        dict_obj = {}
+        FileStorage.__objects = {}
+        if (exists(FileStorage.__file_path)):
+            with open(FileStorage.__file_path, "r") as file:
+                dict_obj = load(file)
+                for key, value in dict_obj.items():
+                    class_nam = key.split(".")[0]
+                    if class_nam in name_class:
+                        FileStorage.__objects[key] = eval(class_nam)(**value)
+                    else:
+                        pass
