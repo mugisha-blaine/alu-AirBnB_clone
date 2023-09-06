@@ -5,7 +5,8 @@ import cmd
 
 
 class HBNBCommand(cmd.Cmd):
-    intro = "AirBnB CLI application!"
+    """Console APP Subclass
+    """
     prompt = '(hbnb) '
 
     def do_quit(self, arg):
