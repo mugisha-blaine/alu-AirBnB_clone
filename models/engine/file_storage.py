@@ -36,8 +36,8 @@ class FileStorage:
             dump(dict_to_json, fil)
 
     def reload(self):
-        """ if (__file_path) exists deserializes JSON file to __objects
-            elif , do nothing. If the file not exist,
+        """ if (__file_path) exists, deserializes JSON file to __objects
+            else, do nothing.
         """
         dict_obj = {}
         FileStorage.__objects = {}
@@ -45,8 +45,8 @@ class FileStorage:
             with open(FileStorage.__file_path, "r") as file:
                 dict_obj = load(file)
                 for key, value in dict_obj.items():
-                    class_nam = key.split(".")[0]
-                    if class_nam in name_class:
-                        FileStorage.__objects[key] = eval(class_nam)(**value)
+                    class_name = key.split(".")[0]
+                    if class_name in name_class:
+                        FileStorage.__objects[key] = eval(class_name)(**value)
                     else:
                         pass
