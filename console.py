@@ -115,7 +115,6 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
 
-        # print string rep of an instance base on class name and id
         obj_index = f'{name_class[0]}.{all_args[1]}'
 
         storage.reload()
@@ -129,6 +128,29 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def complete_destroy(self, text, line, begidx, endidx):
+        return name_class
+
+    def do_all(self, args):
+        """Prints all string representation of all instances
+        all: all [<class_name>]
+        """
+
+        all_args = parse_args(args)
+
+        if all_args and all_args[0] not in name_class:
+            print("** class doesn't exist **")
+            return
+
+        storage.reload()
+        objs_in_dict = storage.all()
+        objs_list = []
+
+        for obj in objs_in_dict.values():
+            objs_list.append(obj.__str__())
+
+        print(objs_list)
+
+    def complete_all(self, text, line, begidx, endidx):
         return name_class
 
 
