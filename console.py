@@ -12,7 +12,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, arg):
         """
-          Exits CLI when `quit` is entered
+          Exit CLI when `quit` is entered
         """
         return True
 
