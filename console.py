@@ -183,7 +183,6 @@ class HBNBCommand(cmd.Cmd):
             return
 
         try:
-            print(obj)
             attr_name = all_args[2]
             obj_attr = obj.__dict__[attr_name]
         except KeyError:
@@ -191,8 +190,6 @@ class HBNBCommand(cmd.Cmd):
         except:
             print("** attribute name missing **")
             return
-        else:
-            print(obj_attr)
 
         try:
             attr_value = all_args[3]
