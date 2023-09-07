@@ -6,7 +6,8 @@ from models import base_model
 from models import User
 
 BaseModel = base_model.BaseModel
-name_class = ["BaseModel", "User"]
+name_class = ["BaseModel", "User", "Place",
+              "State", "City", "Amenity", "Review"]
 
 
 class FileStorage:
