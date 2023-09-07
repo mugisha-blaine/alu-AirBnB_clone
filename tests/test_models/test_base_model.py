@@ -5,6 +5,7 @@ import os
 from models.base_model import BaseModel
 import pep8
 
+
 class TestBaseModel(unittest.TestCase):
     """test BaseModel"""
 
@@ -17,18 +18,17 @@ class TestBaseModel(unittest.TestCase):
         p = style.check_files(['models/base_model.py'])
         self.assertEqual(p.total_errors, 0, "Check pep8")
 
-
-    def test_save_BaesModel(self):
+    def test_save_BaseModel(self):
         """test save_Basemodel"""
-        self.base.save()
+        base = BaseModel()
         self.assertNotEqual(self.base.created_at, self.base.updated_at)
 
     def test_doc(self):
         """ Tests doc """
-        self.assertisNotNone(BaseModel.__doc__)
+        self.assertIsNotNone(BaseModel.__doc__)
 
     def test_to_json(self):
-        '''test to jason'''
+        '''test to json'''
 
     def test_kwarg(self):
         basemodel = BaseModel(name="base")
@@ -38,6 +38,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(hasattr(basemodel, "name"))
         self.assertFalse(hasattr(basemodel, "updated_at"))
         self.assertTrue(hasattr(basemodel, "__class__"))
+
 
 if __name__ == "__main__":
     unittest.main()
