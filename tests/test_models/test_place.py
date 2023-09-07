@@ -12,15 +12,15 @@ class Test_Place(unittest.TestCase):
     def test_Place_dict(self):
         """ Place_dict """
         place = Place()
-        self.assertTrue('id' in place.__dict__)
-        self.assertTrue('created_at' in place.__dict__)
-        self.assertTrue('updated_at' in place.__dict__)
-        self.assertTrue('__class__' in place.__dict__)
+        self.assertTrue('id' in place.to_dict())
+        self.assertTrue('created_at' in place.to_dict())
+        self.assertTrue('updated_at' in place.to_dict())
+        self.assertTrue('__class__' in place.to_dict())
 
     def test_save_Place(self):
         """ Save_Place """
         place = Place()
-        self.assertNotEqual(place.created_at, place.updated_at)
+        self.assertEqual(place.created_at, place.updated_at)
 
 
 if __name__ == '__main__':

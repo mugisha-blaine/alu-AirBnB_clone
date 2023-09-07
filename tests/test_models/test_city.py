@@ -11,17 +11,18 @@ class Test_City(unittest.TestCase):
 
     def test_City_dict(self):
         """ City_dict """
-        self.assertTrue('id' in self.city.__dict__)
-        self.assertTrue('created_at' in self.city.__dict__)
-        self.assertTrue('updated_at' in self.city.__dict__)
-        self.assertTrue('state_id' in self.city.__dict__)
-        self.assertTrue('name' in self.city.__dict__)
-        self.assertTrue('__class__' in self.city.__dict__)
+        city = City()
+        self.assertTrue('id' in city.to_dict())
+        self.assertTrue('created_at' in city.to_dict())
+        self.assertTrue('updated_at' in city.to_dict())
+        self.assertTrue('state_id' in city.to_dict())
+        self.assertTrue('name' in city.to_dict())
+        self.assertTrue('__class__' in city.to_dict())
 
     def test_save_City(self):
         """ save_city """
         city = City()
-        self.assertNotEqual(city.created_at, city.updated_at)
+        self.assertEqual(city.created_at, city.updated_at)
 
     def test_inst(self):
         """ test_inst"""

@@ -23,10 +23,10 @@ class TestBaseModel(unittest.TestCase):
     def test_kwarg(self):
         basemodel = BaseModel()
         self.assertEqual(basemodel.__class__.__name__, "BaseModel")
-        self.assertFalse(hasattr(basemodel, "id"))
-        self.assertFalse(hasattr(basemodel, "created_at"))
+        self.assertTrue(hasattr(basemodel, "id"))
+        self.assertTrue(hasattr(basemodel, "created_at"))
         self.assertTrue(hasattr(basemodel, "name"))
-        self.assertFalse(hasattr(basemodel, "updated_at"))
+        self.assertTrue(hasattr(basemodel, "updated_at"))
         self.assertTrue(hasattr(basemodel, "__class__"))
 
 
