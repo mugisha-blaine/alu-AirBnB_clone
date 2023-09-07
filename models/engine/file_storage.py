@@ -39,8 +39,8 @@ class FileStorage:
         dict_to_json = {}
         for key, value in FileStorage.__objects.items():
             dict_to_json[key] = value.to_dict()
-        with open(FileStorage.__file_path, "w", encoding='utf-8') as fil:
-            dump(dict_to_json, fil)
+        with open(FileStorage.__file_path, "w", encoding='utf-8') as file:
+            dump(dict_to_json, file)
 
     def reload(self):
         """ if (__file_path) exists, deserializes JSON file to __objects

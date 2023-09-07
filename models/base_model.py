@@ -11,6 +11,7 @@ format_date = "%Y-%m-%dT%H:%M:%S.%f"
 
 class BaseModel:
     """ Basemodel class """
+
     def __init__(self, *args, **kwargs):
         """ Initialization of Database """
         if args is not None and len(args) > 0:

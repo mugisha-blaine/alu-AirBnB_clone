@@ -6,11 +6,11 @@ import sys
 import json
 from models.engine import name_class
 from models import storage
-from models import city
-from models import place
-from models import review
-from models import state
-from models import amenity
+from models import City
+from models import Place
+from models import Review
+from models import State
+from models import Amenity
 from models import BaseModel
 from models import User
 
