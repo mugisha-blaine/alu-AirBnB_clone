@@ -12,6 +12,7 @@ from models import review
 from models import state
 from models import amenity
 from models import BaseModel
+from models import User
 
 
 def parse_args(args):
@@ -19,6 +20,15 @@ def parse_args(args):
         all_args = args.split(' ')
         return all_args
     return
+
+
+def complete_class_arg(text, line, begidx, endidx):
+    if not text:
+        completions = name_class[:]
+    else:
+        completions = [
+            class_name for class_name in name_class if class_name.startswith(text)]
+    return completions
 
 
 class HBNBCommand(cmd.Cmd):
@@ -52,8 +62,10 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
 
+        class_name = all_args[0]
+
         # create new BaseModel instance
-        new_instance = BaseModel()
+        new_instance = eval(class_name)()
 
         # save to file.json
         storage.new(new_instance)
@@ -63,7 +75,7 @@ class HBNBCommand(cmd.Cmd):
         print(new_instance.id)
 
     def complete_create(self, text, line, begidx, endidx):
-        return name_class
+        return complete_class_arg(text, line, begidx, endidx)
 
     def do_show(self, args):
         """Prints the string representation of an instance based on the class name and id
@@ -82,21 +94,24 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
 
+        class_name = all_args[0]
+        inst_id = all_args[1]
+
         # print string rep of an instance base on class name and id
-        obj_index = f'{name_class[0]}.{all_args[1]}'
+        obj_key = f'{class_name}.{inst_id}'
 
         storage.reload()
         objs_in_dict = storage.all()
 
         try:
-            obj = objs_in_dict[obj_index]
+            obj = objs_in_dict[obj_key]
         except:
             print('** no instance found **')
         else:
             print(obj)
 
     def complete_show(self, text, line, begidx, endidx):
-        return name_class
+        return complete_class_arg(text, line, begidx, endidx)
 
     def do_destroy(self, args):
         """Deletes an instance based on the class name and id
@@ -115,20 +130,23 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
 
-        obj_index = f'{name_class[0]}.{all_args[1]}'
+        class_name = all_args[0]
+        inst_id = all_args[1]
+
+        obj_key = f'{class_name}.{inst_id}'
 
         storage.reload()
         objs_in_dict = storage.all()
 
         try:
-            del objs_in_dict[obj_index]
+            del objs_in_dict[obj_key]
         except:
             print('** no instance found **')
         else:
             storage.save()
 
     def complete_destroy(self, text, line, begidx, endidx):
-        return name_class
+        return complete_class_arg(text, line, begidx, endidx)
 
     def do_all(self, args):
         """Prints all string representation of all instances
@@ -145,13 +163,22 @@ class HBNBCommand(cmd.Cmd):
         objs_in_dict = storage.all()
         objs_list = []
 
-        for obj in objs_in_dict.values():
-            objs_list.append(obj.__str__())
+        # return all objs if class name is not specified.
+        try:
+            class_name = all_args[0]
+        except:
+            for obj in objs_in_dict.values():
+                objs_list.append(obj.__str__())
+        else:
+            # give objs with the specified class name if class name is given
+            for obj in objs_in_dict.values():
+                if class_name == obj.__class__.__name__:
+                    objs_list.append(obj.__str__())
 
         print(objs_list)
 
     def complete_all(self, text, line, begidx, endidx):
-        return name_class
+        return complete_class_arg(text, line, begidx, endidx)
 
     def do_update(self, args):
         """Updates an instance based on the class name and id
@@ -170,14 +197,16 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
 
-        # print string rep of an instance base on class name and id
-        obj_index = f'{name_class[0]}.{all_args[1]}'
+        class_name = all_args[0]
+        inst_id = all_args[1]
+
+        obj_key = f'{class_name}.{inst_id}'
 
         storage.reload()
         objs_in_dict = storage.all()
 
         try:
-            obj = objs_in_dict[obj_index]
+            obj = objs_in_dict[obj_key]
         except:
             print('** no instance found **')
             return
@@ -203,7 +232,7 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def complete_update(self, text, line, begidx, endidx):
-        return name_class
+        return complete_class_arg(text, line, begidx, endidx)
 
 
 if __name__ == "__main__":

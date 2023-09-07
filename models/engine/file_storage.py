@@ -3,9 +3,10 @@
 from json import dump, load, dumps
 from os.path import exists
 from models import base_model
+from models import User
 
 BaseModel = base_model.BaseModel
-name_class = ["BaseModel"]
+name_class = ["BaseModel", "User"]
 
 
 class FileStorage:
