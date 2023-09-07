@@ -191,7 +191,7 @@ class HBNBCommand(cmd.Cmd):
         try:
             attr_value = all_args[3]
             obj_attr = obj.__dict__[attr_name]
-        except KeyError:
+        except KeyError:  # if attr_name(key) not in obj, add it to the object
             obj.__dict__.update({attr_name: attr_value})
             storage.save()
             return
