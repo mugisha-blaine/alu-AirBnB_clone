@@ -185,11 +185,13 @@ class HBNBCommand(cmd.Cmd):
         try:
             print(obj)
             attr_name = all_args[2]
+            obj_attr = obj.__dict__[attr_name]
+        except KeyError:
+            return
         except:
             print("** attribute name missing **")
             return
         else:
-            obj_attr = obj.__dict__[attr_name]
             print(obj_attr)
 
         try:
