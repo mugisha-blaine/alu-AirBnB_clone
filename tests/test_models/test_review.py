@@ -1,18 +1,19 @@
 #!/usr/bin/python3
+
 import unittest
 from models.review import Review
-import datetime
 
 
 class TestReview(unittest.TestCase):
 
     def setUp(self):
-    
+
         self.test_model1 = Review()
         self.test_model2 = Review()
 
     def test_basic_setup(self):
-    
+        """test_basic_setup"""
+
         self.assertTrue(hasattr(self.test_model1, "place_id"))
         self.assertTrue(hasattr(self.test_model1, "user_id"))
         self.assertTrue(hasattr(self.test_model1, "text"))
@@ -23,17 +24,20 @@ class TestReview(unittest.TestCase):
         self.assertTrue(type(m1c) is str)
 
     def test_types(self):
-    
+        """test_types"""
+
         self.assertTrue(type(self.test_model1.place_id) is str)
         self.assertTrue(type(self.test_model1.user_id) is str)
         self.assertTrue(type(self.test_model1.text) is str)
 
     def test_save(self):
-    
+        """test_save"""
+
         m1u = self.test_model1.updated_at
         self.test_model1.save()
         m1u_saved = self.test_model1.updated_at
         self.assertFalse(m1u == m1u_saved)
+
 
 if __name__ == '__main__':
     unittest.main()
