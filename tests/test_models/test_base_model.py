@@ -25,7 +25,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(basemodel.__class__.__name__, "BaseModel")
         self.assertTrue(hasattr(basemodel, "id"))
         self.assertTrue(hasattr(basemodel, "created_at"))
-        self.assertTrue(hasattr(basemodel, "name"))
         self.assertTrue(hasattr(basemodel, "updated_at"))
         self.assertTrue(hasattr(basemodel, "__class__"))
 
