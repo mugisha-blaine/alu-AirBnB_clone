@@ -184,15 +184,17 @@ class HBNBCommand(cmd.Cmd):
 
         try:
             attr_name = all_args[2]
-            obj_attr = obj.__dict__[attr_name]
-        except KeyError:
-            return
         except:
             print("** attribute name missing **")
             return
 
         try:
             attr_value = all_args[3]
+            obj_attr = obj.__dict__[attr_name]
+        except KeyError:
+            obj.__dict__.update({attr_name: attr_value})
+            storage.save()
+            return
         except:
             print("** value missing **")
             return
