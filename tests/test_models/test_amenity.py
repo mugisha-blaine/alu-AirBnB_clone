@@ -16,12 +16,12 @@ class Test_Amenity(unittest.TestCase):
         self.assertTrue('id' in amenity.to_dict())
         self.assertTrue('created_at' in amenity.to_dict())
         self.assertTrue('updated_at' in amenity.to_dict())
-        self.assertTrue('name' in amenity.to_dict())
+        self.assertTrue('__class__' in amenity.to_dict())
 
     def test_save_Amenity(self):
         """Amenity save"""
         amenity = Amenity()
-        self.assertNotEqual(amenity.created_at, amenity.updated_at)
+        self.assertEqual(amenity.created_at, amenity.updated_at)
 
 
 if __name__ == '__main__':

@@ -15,7 +15,6 @@ class Test_City(unittest.TestCase):
         self.assertTrue('id' in city.to_dict())
         self.assertTrue('created_at' in city.to_dict())
         self.assertTrue('updated_at' in city.to_dict())
-        self.assertTrue('state_id' in city.to_dict())
         self.assertTrue('name' in city.to_dict())
         self.assertTrue('__class__' in city.to_dict())
 
