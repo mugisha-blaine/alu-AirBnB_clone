@@ -4,6 +4,11 @@ from json import dump, load, dumps
 from os.path import exists
 from models import base_model
 from models import User
+from models import Place
+from models import City
+from models import Review
+from models import State
+from models import Amenity
 
 BaseModel = base_model.BaseModel
 name_class = ["BaseModel", "User", "Place",
