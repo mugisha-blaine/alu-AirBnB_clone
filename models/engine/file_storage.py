@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ Class FileStorage """
-from json import dump, load, dumps
+from json import dump, load
 from os.path import exists
 from models import base_model
 from models import User
