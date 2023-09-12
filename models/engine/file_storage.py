@@ -1,3 +1,4 @@
+'''
 #!/usr/bin/python3
 """ Class FileStorage """
 from json import dump, load
@@ -56,4 +57,4 @@ class FileStorage:
                     if class_name in name_class:
                         FileStorage.__objects[key] = eval(class_name)(**value)
                     else:
-                        pass
+                        pass'''
