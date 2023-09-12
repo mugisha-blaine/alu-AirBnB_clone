@@ -25,7 +25,7 @@ class BaseModel:
         else:
             self.id = str(uuid4())
             self.created_at = self.updated_at = datetime.now()
-            #models.storage.new(self)
+            models.storage.new(self)
 
     def __str__(self):
         """str definition"""
@@ -34,8 +34,8 @@ class BaseModel:
     def save(self):
         """save definition"""
         self.updated_at = datetime.now()
-        #models.storage.new(self)
-        #models.storage.save()
+        models.storage.new(self)
+        models.storage.save()
 
     def to_dict(self):
         new_dict = self.__dict__.copy()

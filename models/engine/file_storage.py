@@ -1,9 +1,8 @@
-'''
 #!/usr/bin/python3
 """ Class FileStorage """
 from json import dump, load
 from os.path import exists
-#from models import base_model
+from models import base_model
 from models import User
 from models import Place
 from models import City
@@ -57,4 +56,4 @@ class FileStorage:
                     if class_name in name_class:
                         FileStorage.__objects[key] = eval(class_name)(**value)
                     else:
-                        pass'''
+                        pass
