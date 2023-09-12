@@ -27,8 +27,9 @@ def complete_class_arg(text, line, begidx, endidx):
         completions = name_class[:]
     else:
         completions = [
-            class_name for class_name in name_class if class_name.s\
-                                                       tartswith(text)]
+            class_name 
+            for class_name in name_class 
+            if class_name.startswith(text)]
     return completions
 
 
@@ -184,7 +185,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, args):
         """Updates an instance based on the class name and id
-        update: update <class_name> <instance id> <attribute name> 
+        update: update <class_name> <instance id> <attribute name>
         "<attribute value>"
         """
 
