@@ -27,7 +27,8 @@ def complete_class_arg(text, line, begidx, endidx):
         completions = name_class[:]
     else:
         completions = [
-            class_name for class_name in name_class if class_name.startswith(text)]
+            class_name for class_name in name_class if class_name.s\
+                                                       tartswith(text)]
     return completions
 
 
@@ -78,7 +79,8 @@ class HBNBCommand(cmd.Cmd):
         return complete_class_arg(text, line, begidx, endidx)
 
     def do_show(self, args):
-        """Prints the string representation of an instance based on the class name and id
+        """Prints the string representation of an instance based\
+                on the class name and id
         show: show <class_name> <instance id>
         """
 
@@ -182,7 +184,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, args):
         """Updates an instance based on the class name and id
-        update: update <class_name> <instance id> <attribute name> "<attribute value>"
+        update: update <class_name> <instance id> <attribute name> 
+        "<attribute value>"
         """
 
         all_args = parse_args(args)
