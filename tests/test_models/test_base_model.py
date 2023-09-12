@@ -18,7 +18,18 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsNotNone(BaseModel.__doc__)
 
     def test_to_json(self):
-        '''test to json'''
+    """Test the to_json method"""
+    base = BaseModel()
+    base_json = base.to_json()
+
+    self.assertIsInstance(base_json, dict)
+
+    self.assertIn("id", base_json)
+    self.assertIn("created_at", base_json)
+    self.assertIn("updated_at", base_json)
+    self.assertIn("__class__", base_json)
+    self.assertEqual(base.id, base_json["id"])
+    self.assertEqual("BaseModel", base_json["__class__"])
 
     def test_kwarg(self):
         basemodel = BaseModel()
