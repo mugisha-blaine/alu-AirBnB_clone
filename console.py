@@ -27,8 +27,8 @@ def complete_class_arg(text, line, begidx, endidx):
         completions = name_class[:]
     else:
         completions = [
-            class_name 
-            for class_name in name_class 
+            class_name
+            for class_name in name_class
             if class_name.startswith(text)]
     return completions
 
