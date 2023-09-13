@@ -4,12 +4,9 @@
 
 import unittest
 from models import Place
-
-from models.city import City
-from models.user import User
-
-from models.base_model import BaseModel
-
+from models import City
+from models import User
+from models import BaseModel
 
 class TestPlace(unittest.TestCase):
     """Test cases Place class."""
