@@ -6,7 +6,7 @@ import unittest
 from models import Place
 from models import City
 from models import User
-from models import BaseModel
+from models.base_model import BaseModel
 
 class TestPlace(unittest.TestCase):
     """Test cases Place class."""
