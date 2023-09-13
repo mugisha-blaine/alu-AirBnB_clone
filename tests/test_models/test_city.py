@@ -1,31 +1,32 @@
 #!/usr/bin/python3
-""" Test city """
-
 import unittest
 from models import City
-from models.base_model import BaseModel
+import datetime
 
 
-class Test_City(unittest.TestCase):
-    """ Tests city """
+class TestCity(unittest.TestCase):
 
-    def test_City_dict(self):
-        """ City_dict """
-        city = City()
-        self.assertTrue('id' in city.to_dict())
-        self.assertTrue('created_at' in city.to_dict())
-        self.assertTrue('updated_at' in city.to_dict())
-        self.assertTrue('__class__' in city.to_dict())
+    def setUp(self):
+        self.test_model1 = City()
+        self.test_model2 = City()
 
-    def test_save_City(self):
-        """ save_city """
-        city = City()
-        self.assertEqual(city.created_at, city.updated_at)
+    def test_basic_setup(self):
+    
+        self.assertTrue(hasattr(self.test_model1, "state_id"))
+        self.assertTrue(hasattr(self.test_model1, "name"))
+        self.assertTrue(self.test_model1.id != self.test_model2.id)
 
-    def test_inst(self):
-        """ test_inst"""
-        city = City()
-        self.assertIsInstance(city, City)
+    def test_types(self):
+    
+        self.assertTrue(type(self.test_model1.state_id) is str)
+        self.assertTrue(type(self.test_model1.name) is str)
 
-if __name__ == "__main__":
+    def test_save(self):
+    
+        m1u = self.test_model1.updated_at
+        self.test_model1.save()
+        m1u_saved = self.test_model1.updated_at
+        self.assertFalse(m1u == m1u_saved)
+
+if __name__ == '__main__':
     unittest.main()
