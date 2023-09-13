@@ -4,10 +4,6 @@
 
 import unittest
 from models import Place
-#from models.city import City
-#from models import User
-
-#from models import BaseModel
 
 
 class TestPlace(unittest.TestCase):
